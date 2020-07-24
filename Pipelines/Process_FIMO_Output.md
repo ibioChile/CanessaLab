@@ -61,21 +61,21 @@ for file in Default_bed/*.bed; do i=${file##*/}; awk '$6=="-"' $file  > Stranded
 
 ```
 mkdir MotifsIntergenic/
-for file in StrandedMotifs/*rev.bed; do i=${file##*/}; bedtools intersect -wa -a $file -b Botrytis_cinerea.ASM83294v1.47.rev.intergenic.bed > MotifsIntergen$
-for file in StrandedMotifs/*fwd.bed; do i=${file##*/}; bedtools intersect -wa -a $file -b Botrytis_cinerea.ASM83294v1.47.fwd.intergenic.bed > MotifsIntergen$
+for file in StrandedMotifs/*rev.bed; do i=${file##*/}; bedtools intersect -wa -a $file -b Botrytis_cinerea.ASM83294v1.47.rev.intergenic.bed > MotifsIntergenic/${i%.*}.intergenic.bed; done
+for file in StrandedMotifs/*fwd.bed; do i=${file##*/}; bedtools intersect -wa -a $file -b Botrytis_cinerea.ASM83294v1.47.fwd.intergenic.bed > MotifsIntergenic/${i%.*}.intergenic.bed; done
 ```
 
 ## Find genes with motifs located up to 1000bp of each gene
 
 ```
 mkdir MotifsUpstream1000bp
-for file in MotifsIntergenic/*fwd.intergenic.bed; do i=${file##*/}; bedops --range -1000:0 --everything Botrytis_cinerea.ASM83294v1.47.genes.fwd.bed | bedma$
-for file in MotifsIntergenic/*rev.intergenic.bed; do i=${file##*/}; bedops --range -1000:0 --everything Botrytis_cinerea.ASM83294v1.47.genes.rev.bed | bedma$
+for file in MotifsIntergenic/*fwd.intergenic.bed; do i=${file##*/}; bedops --range -1000:0 --everything Botrytis_cinerea.ASM83294v1.47.genes.fwd.bed | bedmap --echo --echo-map-id --echo-map-range - $file | bedops --range 1000:0 --everything - > MotifsUpstream1000bp/${i%.*}.1000bp.bed; done
+for file in MotifsIntergenic/*rev.intergenic.bed; do i=${file##*/}; bedops --range -1000:0 --everything Botrytis_cinerea.ASM83294v1.47.genes.rev.bed | bedmap --echo --echo-map-id --echo-map-range - $file | bedops --range 1000:0 --everything - > MotifsUpstream1000bp/${i%.*}.1000bp.bed; done
 ```
 
 ## Concatenate results
 
 ```
 mkdir Results_Default/
-for file in MotifsUpstream1000bp/*fwd*; do i=${file##*/}; cat $file ${file%fwd*}rev.intergenic.1000bp.bed > Results_Default/${i%.*.*.*.*}.intergenic.1000bp.b$
+for file in MotifsUpstream1000bp/*fwd*; do i=${file##*/}; cat $file ${file%fwd*}rev.intergenic.1000bp.bed > Results_Default/${i%.*.*.*.*}.intergenic.1000bp.bed; done
 ```
