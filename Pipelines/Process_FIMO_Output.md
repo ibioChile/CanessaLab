@@ -79,3 +79,6 @@ for file in MotifsIntergenic/*rev.intergenic.bed; do i=${file##*/}; bedops --ran
 mkdir Results_Default/
 for file in MotifsUpstream1000bp/*fwd*; do i=${file##*/}; cat $file ${file%fwd*}rev.intergenic.1000bp.bed > Results_Default/${i%.*.*.*.*}.intergenic.1000bp.bed; done
 ```
+
+## Create a summary of results
+Use [this python script](https://github.com/ibioChile/CanessaLab/blob/master/Scripts/Summary_Filtered_FIMO.py) to create a summary of resulting bed files. Before running, modify input folder (contining bed files) and output file in script.
