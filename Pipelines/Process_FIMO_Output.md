@@ -54,7 +54,7 @@ for folder in Default/finalmemeuni*.txt/; do base=${folder##*/finalmemeuni}; con
 
 ```
 mkdir StrandedMotifs/
-for file in Default_bed/*.bed; do i=${file##*/}; awk '$6=="-"' $file  > StrandedMotifs/${i%.*}.rev.bed; awk '$6=="+"' $file  > StrandedMotifs/${i%.*}.fwd.be$
+for file in Default_bed/*.bed; do i=${file##*/}; awk '$6=="-"' $file  > StrandedMotifs/${i%.*}.rev.bed; awk '$6=="+"' $file  > StrandedMotifs/${i%.*}.fwd.bed; done
 ```
 
 ## Filter motifs to the ones located in intergenic regions
