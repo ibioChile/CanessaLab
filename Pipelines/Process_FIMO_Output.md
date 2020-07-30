@@ -17,7 +17,7 @@ conda install -c bioconda bedops bedtools samtools=1.9
 convert2bed -i gff < Botrytis_cinerea.ASM83294v1.47.gff3  > Botrytis_cinerea.ASM83294v1.47.bed
 ```
 
-### #Select 'genes' from Botrytis bed file:
+### Select 'genes' from Botrytis bed file:
 ```
 awk '$8 == "gene"' Botrytis_cinerea.ASM83294v1.47.bed  > Botrytis_cinerea.ASM83294v1.47.genes.bed
 ```
