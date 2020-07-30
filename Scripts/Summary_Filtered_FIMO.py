@@ -19,9 +19,12 @@ for bed_file in arr:
             if motif_ids:
                 motif_id = str(motif_ids).split(";")
                 for mid in motif_id:
-                    motifs_info.append([motif_name, Genome, Gene_ID, Gene_start, Gene_end, Strand, mid])
+                    motifs_info.append([motif_name, Genome, Gene_ID, Gene_start, Gene_end, Strand])
+            else:
+                motifs_info.append(["Not Motif", Genome, Gene_ID, Gene_start, Gene_end, Strand])
 
 df = pd.DataFrame(motifs_info, columns=['motif_name', 'Genome', 'Gene_ID', 'Gene_start', 'Gene_end', 'Strand', 'motif_id'])
 df_pivot = df.pivot_table(index=['Genome', 'Gene_ID', 'Gene_start', 'Gene_end', 'Strand'], columns=['motif_name'],
                                   aggfunc=len).fillna(0)
+df_pivot_filt = df_pivot.drop(labels='Not Motif', axis=1)
 df_pivot.to_csv(r'FIMO_Bot_intergenic_1000bp_summary.csv', index=True)
