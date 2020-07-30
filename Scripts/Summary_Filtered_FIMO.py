@@ -27,4 +27,4 @@ df = pd.DataFrame(motifs_info, columns=['motif_name', 'Genome', 'Gene_ID', 'Gene
 df_pivot = df.pivot_table(index=['Genome', 'Gene_ID', 'Gene_start', 'Gene_end', 'Strand'], columns=['motif_name'],
                                   aggfunc=len).fillna(0)
 df_pivot_filt = df_pivot.drop(labels='Not Motif', axis=1)
-df_pivot.to_csv(r'FIMO_Bot_intergenic_1000bp_summary.csv', index=True)
+df_pivot_filt.to_csv(r'FIMO_Bot_intergenic_1000bp_summary.csv', index=True)
