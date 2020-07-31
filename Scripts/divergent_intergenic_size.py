@@ -33,4 +33,4 @@ for current_line in gff_bot:
 print("Average of Divergent intergenic size: " + str(round(mean(inter_size_list))) + "+-" + str(round(stdev(inter_size_list))) + "bp" )
 
 df = pd.DataFrame(inter_size_df, columns=['Gene1', 'Gene2', 'Intergenic size (bp)'])
-df.to_csv(r'/Users/pamelacamejo/Documents/IBIO/Paulo_Canessa/FIMO_Botrytis/Results/Intergenic_Divergent_Genes_Bot.csv', index=False)
+df.to_csv(r'/Results/Intergenic_Divergent_Genes_Bot.csv', index=False)
