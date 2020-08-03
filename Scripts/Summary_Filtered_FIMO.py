@@ -23,7 +23,7 @@ for bed_file in arr:
             else:
                 motifs_info.append(["Not Motif", Genome, Gene_ID, Gene_start, Gene_end, Strand])
 
-df = pd.DataFrame(motifs_info, columns=['motif_name', 'Genome', 'Gene_ID', 'Gene_start', 'Gene_end', 'Strand', 'motif_id'])
+df = pd.DataFrame(motifs_info, columns=['motif_name', 'Genome', 'Gene_ID', 'Gene_start', 'Gene_end', 'Strand'])
 df_pivot = df.pivot_table(index=['Genome', 'Gene_ID', 'Gene_start', 'Gene_end', 'Strand'], columns=['motif_name'],
                                   aggfunc=len).fillna(0)
 df_pivot_filt = df_pivot.drop(labels='Not Motif', axis=1)
