@@ -37,7 +37,7 @@ cut -f1,2 genome_fasta.fai > genome_fasta.contig.size
 ### Sort Botrytis genes BED file according to genomes name
 
 ```
-sortBed -g  genome_fasta.contig.size -i Botrytis_cinerea.ASM83294v1.47.genes.bed > Botrytis_cinerea.ASM83294v1.47.genes.sorted.bed```
+sortBed -g  genome_fasta.contig.size -i Botrytis_cinerea.ASM83294v1.47.genes.bed > Botrytis_cinerea.ASM83294v1.47.genes.sorted.bed
 ```
 
 ### Create file with intergenic regions in Botrytis
