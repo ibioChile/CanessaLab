@@ -22,11 +22,6 @@ convert2bed -i gff < Botrytis_cinerea.ASM83294v1.47.gff3  > Botrytis_cinerea.ASM
 awk '$8 == "gene"' Botrytis_cinerea.ASM83294v1.47.bed  > Botrytis_cinerea.ASM83294v1.47.genes.bed
 ```
 
-### Generate forward and reverse Botrytis genes files
-
-    awk '$6=="-"' Botrytis_cinerea.ASM83294v1.47.genes.bed > Botrytis_cinerea.ASM83294v1.47.genes.rev.bed
-    awk '$6=="+"' Botrytis_cinerea.ASM83294v1.47.genes.bed	> Botrytis_cinerea.ASM83294v1.47.genes.fwd.bed
-
 ### Create file with length of each chromosome of Botrytis
 
 ```
@@ -39,6 +34,12 @@ cut -f1,2 genome_fasta.fai > genome_fasta.contig.size
 ```
 sortBed -g  genome_fasta.contig.size -i Botrytis_cinerea.ASM83294v1.47.genes.bed > Botrytis_cinerea.ASM83294v1.47.genes.sorted.bed
 ```
+
+### Generate forward and reverse Botrytis genes files
+
+    awk '$6=="-"' Botrytis_cinerea.ASM83294v1.47.genes.sorted.bed > Botrytis_cinerea.ASM83294v1.47.genes.rev.bed
+    awk '$6=="+"' Botrytis_cinerea.ASM83294v1.47.genes.sorted.bed	> Botrytis_cinerea.ASM83294v1.47.genes.fwd.bed
+
 
 ### Create file with intergenic regions in Botrytis
 
